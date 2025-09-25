@@ -1,0 +1,52 @@
+#include <stdio.h>
+#define TOTAL_SEATS 10
+int main() {
+    int seats[TOTAL_SEATS]; 
+    int choice, seat_num;
+for (int i = 0; i < TOTAL_SEATS; i++) {
+        seats[i] = 0;
+    }
+
+    do {
+        printf("\n--- Ticket Booking System ---\n");
+        printf("1. View Available Seats\n");
+        printf("2. Book a Seat\n");
+        printf("3. Exit\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+
+        switch (choice) {
+            case 1:
+                printf("\nAvailable Seats: ");
+                for (int i = 0; i < TOTAL_SEATS; i++) {
+                    if (seats[i] == 0) {
+                        printf("%d ", i + 1);
+                    }
+                }
+                printf("\n");
+                break;
+            case 2:
+                printf("Enter seat number to book (1-%d): ", TOTAL_SEATS);
+                scanf("%d", &seat_num);
+
+                if (seat_num >= 1 && seat_num <= TOTAL_SEATS) {
+                    if (seats[seat_num - 1] == 0) {
+                        seats[seat_num - 1] = 1; // Book the seat
+                        printf("Seat %d successfully booked!\n", seat_num);
+                    } else {
+                        printf("Seat %d is already booked. Please choose another.\n", seat_num);
+                    }
+                } else {
+                    printf("Invalid seat number.\n");
+                }
+                break;
+            case 3:
+                printf("Exiting Ticket Booking System. Goodbye!\n");
+                break;
+            default:
+                printf("Invalid choice. Please try again.\n");
+        }
+    } while (choice != 3);
+
+    return 0;
+}
