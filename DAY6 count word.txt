@@ -1,0 +1,26 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdbool.h> 
+
+int main() {
+    char str[100];
+    int word_count = 0;
+    bool in_word = false; 
+
+    printf("Enter a string: ");
+    fgets(str, sizeof(str), stdin); 
+    str[strcspn(str, "\n")] = 0; 
+    for (int i = 0; str[i] != '\0'; i++) {
+        if (str[i] == ' ' || str[i] == '\t' || str[i] == '\n') {
+            in_word = false;
+        } 
+        else if (!in_word) {
+            word_count++;
+            in_word = true;
+        }
+    }
+
+    printf("Number of words in the string: %d\n", word_count);
+
+    return 0;
+}
